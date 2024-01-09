@@ -3,7 +3,7 @@ displayNoName = (req, res) => {
 	res.status(200).send(greeting);
 };
 displayName = (req, res) => {
-	const data = "Someone I Know";
+	const data = "Matthew Lyman";
 	res.status(200).send(data);
 };
 
