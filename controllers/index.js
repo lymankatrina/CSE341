@@ -1,9 +1,9 @@
 displayNoName = (req, res) => {
-	const data = "Hello World!";
-	res.status(200).send(data);
+	const greeting = "Hello World!";
+	res.status(200).send(greeting);
 };
 displayName = (req, res) => {
-	const data = "Hello World, This is Matthew Lyman";
+	const data = "Someone I Know";
 	res.status(200).send(data);
 };
 
