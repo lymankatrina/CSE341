@@ -1,13 +1,13 @@
 // This is going to create a modular web application using node.js express routers
-const express = require("express");
+const express = require('express');
 const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const contactsRoutes = require('./routes/contacts');
+// const contactsRoutes = require('./routes/contacts');
 
 app
   .use(bodyParser.json())
@@ -15,7 +15,8 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use('/contacts', contactsRoutes);
+//  .use('/contacts', contactsRoutes);
+  .use('/', require('./routes'));
 
 mongodb.initDb((err, mongodb) => {
   if (err) {
@@ -27,5 +28,3 @@ mongodb.initDb((err, mongodb) => {
 
   }
 });
-
-
