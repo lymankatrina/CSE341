@@ -2,7 +2,11 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
-  const result = await mongodb.getDb().db().collection('contacts').find();
+  const result = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -22,7 +26,70 @@ const getSingle = async (req, res, next) => {
   });
 };
 
+// create a contact
+const postContact = async (req, res, next) => {
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .insertOne(contact);
+  if (response.acknowledged) {
+    res.status(201).json(response);
+  } else {
+    res.status(500).json(response.error || 'An error occurred while posting a new contact.');
+  }   
+};
+
+// update a contact
+const putContact = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const contact = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday
+  };
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .replaceOne({ _id: userId }, contact);
+  console.log(response);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'An error occured in the put request.');
+  }
+};
+
+// Delete a Contact
+const deleteContact = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .deleteOne({ _id: userId });
+  console.log(response);
+    if (response.deletedCount > 0 ) {
+      res.status(200).send();
+    } else {
+      res.status(500).json(response.error || 'An error occured with the delete request.');
+    }
+};
+
 module.exports = { 
   getAll,
-  getSingle
+  getSingle,
+  postContact,
+  putContact,
+  deleteContact
  };
