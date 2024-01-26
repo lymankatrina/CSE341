@@ -29,17 +29,25 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/contacts/65b2f278463fdcaca2df9185 HTTP/1.1
+PUT http://localhost:3000/contacts/65b42b7436512cfc7507bffa/updateEmail HTTP/1.1
+Content-Type: application/json
+
+{
+  "email":"mickeym@gmail.com"
+  }
+
+###
+PUT http://localhost:3000/contacts/65b42b7436512cfc7507bffa HTTP/1.1
 Content-Type: application/json
 
 {
   "firstName":"Minnie",
   "lastName":"Mouse",
   "email":"minniem@gmail.com",
-  "favoriteColor":"pink",
+  "favoriteColor":"Pink",
   "birthday":"01/01/1951"
 }
 
 ###
-DELETE http://localhost:3000/contacts/65b2f278463fdcaca2df9185 HTTP/1.1
+DELETE http://localhost:3000/contacts/65b42b7436512cfc7507bffa HTTP/1.1
 
