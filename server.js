@@ -15,7 +15,7 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-//  .use('/contacts', contactsRoutes);
+  //  .use('/contacts', contactsRoutes);
   .use('/', require('./routes'));
 
 mongodb.initDb((err, mongodb) => {
@@ -25,6 +25,5 @@ mongodb.initDb((err, mongodb) => {
     app.listen(port, () => {
       console.log(`Connected to DB and Web Server is listening on port ${port}`);
     });
-
   }
 });
