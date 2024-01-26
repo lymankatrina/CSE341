@@ -9,6 +9,8 @@ router.get('/:id', contactsController.getSingle);
 
 router.post('/', contactsController.postContact);
 
+router.put('/:id/updateEmail', contactsController.putEmail);
+
 router.put('/:id', contactsController.putContact);
 
 router.delete('/:id', contactsController.deleteContact);

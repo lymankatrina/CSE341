@@ -47,7 +47,30 @@ const postContact = async (req, res, next) => {
   }   
 };
 
-// update a contact
+// update one contact email address
+const putEmail = async (req, res) => {
+  const userId = new ObjectId(req.params.id);
+  const contactEmail = {
+    email: req.body.email,
+  };
+  const response = await mongodb
+    .getDb()
+    .db()
+    .collection('contacts')
+    .updateOne(
+      { _id: userId }, 
+      { $set: contactEmail},
+      { upsert: false }
+    );
+  console.log(response);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error || 'An error occured in the put request.');
+  }
+};
+
+// update one contact using replace contact
 const putContact = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const contact = {
@@ -90,6 +113,7 @@ module.exports = {
   getAll,
   getSingle,
   postContact,
+  putEmail,
   putContact,
   deleteContact
  };
