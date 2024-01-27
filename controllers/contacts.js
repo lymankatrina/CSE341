@@ -1,7 +1,7 @@
 const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   const result = await mongodb.getDb().db().collection('contacts').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
@@ -9,7 +9,7 @@ const getAll = async (req, res, next) => {
   });
 };
 
-const getSingle = async (req, res, next) => {
+const getSingle = async (req, res) => {
   const userId = new ObjectId(req.params.id);
   const result = await mongodb.getDb().db().collection('contacts').find({ _id: userId });
   result.toArray().then((lists) => {
@@ -19,7 +19,7 @@ const getSingle = async (req, res, next) => {
 };
 
 // create a contact
-const postContact = async (req, res, next) => {
+const postContact = async (req, res) => {
   const contact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
