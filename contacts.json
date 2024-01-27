@@ -1,12 +1,12 @@
 {
-  "contact": { 
+  "contact": {
     "firstName": "Kylie",
     "lastName": "Horsley",
     "email": "kylieh@gmail.com",
     "favoriteColor": "yellow",
     "birthday": "1998-09-26"
   },
-	"contact2": {
+  "contact2": {
     "firstName": "KaDance",
     "lastName": "Shumway",
     "email": "kshumway@gmail.com",
@@ -21,4 +21,3 @@
     "birthday": "2001-11-23"
   }
 }
-
