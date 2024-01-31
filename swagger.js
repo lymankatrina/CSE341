@@ -10,17 +10,17 @@ const doc = {
       name: 'KatrinaLyman',
       url: 'https://github.com/lymankatrina/CSE341'
     },
-    servers: [
-      {
-        url: '',
-        description: ''
-      },
-      {
-        url: 'https://katrina341.onrender.com',
-        description: ''
-      }
-    ],
   },
+  servers: [
+    {
+      url: '',
+      description: ''
+    },
+    {
+      url: 'https://katrina341.onrender.com',
+      description: ''
+    }
+  ],
   tags: [],
   components: {}
 };

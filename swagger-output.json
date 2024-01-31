@@ -7,21 +7,16 @@
     "contact": {
       "name": "KatrinaLyman",
       "url": "https://github.com/lymankatrina/CSE341"
-    },
-    "servers": [
-      {
-        "url": "",
-        "description": ""
-      },
-      {
-        "url": "https://katrina341.onrender.com",
-        "description": ""
-      }
-    ]
+    }
   },
   "servers": [
     {
-      "url": "http://localhost:3000/"
+      "url": "",
+      "description": ""
+    },
+    {
+      "url": "https://katrina341.onrender.com",
+      "description": ""
     }
   ],
   "paths": {
