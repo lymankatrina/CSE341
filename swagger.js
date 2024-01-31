@@ -1,5 +1,4 @@
 const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
-const port = process.env.PORT || 3000;
 
 const doc = {
   info: {
@@ -11,7 +10,16 @@ const doc = {
       name: 'KatrinaLyman',
       url: 'https://github.com/lymankatrina/CSE341'
     },
-    host: port
+    servers: [
+      {
+        url: '',
+        description: ''
+      },
+      {
+        url: 'https://katrina341.onrender.com',
+        description: ''
+      }
+    ],
   },
   tags: [],
   components: {}

@@ -8,7 +8,16 @@
       "name": "KatrinaLyman",
       "url": "https://github.com/lymankatrina/CSE341"
     },
-    "host": 3000
+    "servers": [
+      {
+        "url": "",
+        "description": ""
+      },
+      {
+        "url": "https://katrina341.onrender.com",
+        "description": ""
+      }
+    ]
   },
   "servers": [
     {
