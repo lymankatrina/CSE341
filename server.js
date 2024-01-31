@@ -2,14 +2,11 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
 const port = process.env.PORT || 3000;
-
-// const contactsRoutes = require('./routes/contacts');
 
 app
   .use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
@@ -24,7 +21,7 @@ app
   //  .use('/contacts', contactsRoutes);
   .use('/', require('./routes'));
 
-mongodb.initDb((err, mongodb) => {
+mongodb.initDb((err) => {
   if (err) {
     console.log(err);
   } else {
