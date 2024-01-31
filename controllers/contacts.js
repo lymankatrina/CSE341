@@ -5,11 +5,7 @@ const getAll = async (req, res, next) => {
   // #swagger.summary = 'Get list of all contacts'
   // #swagger.description = 'This will list all of the contacts in the database'
   // #swagger.parameters[]
-  const result = await mongodb
-    .getDb()
-    .db()
-    .collection('contacts')
-    .find();
+  const result = await mongodb.getDb().db().collection('contacts').find();
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists);
@@ -20,11 +16,7 @@ const getSingle = async (req, res, next) => {
   // #swagger.summary = 'Get a single contact by ID'
   // #swagger.description = 'To get a single contact enter a user ID'
   const userId = new ObjectId(req.params.id);
-  const result = await mongodb
-    .getDb()
-    .db()
-    .collection('contacts')
-    .find({ _id: userId });
+  const result = await mongodb.getDb().db().collection('contacts').find({ _id: userId });
   result.toArray().then((lists) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(lists[0]);
@@ -42,16 +34,12 @@ const postContact = async (req, res, next) => {
     favoriteColor: req.body.favoriteColor,
     birthday: req.body.birthday
   };
-  const response = await mongodb
-    .getDb()
-    .db()
-    .collection('contacts')
-    .insertOne(contact);
+  const response = await mongodb.getDb().db().collection('contacts').insertOne(contact);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
     res.status(500).json(response.error || 'An error occurred while posting a new contact.');
-  }   
+  }
 };
 
 // update one contact email address
@@ -60,22 +48,18 @@ const putEmail = async (req, res) => {
   // #swagger.description = 'To change a contacts email address, enter the user Id and new email address'
   const userId = new ObjectId(req.params.id);
   const contactEmail = {
-    email: req.body.email,
+    email: req.body.email
   };
   const response = await mongodb
     .getDb()
     .db()
     .collection('contacts')
-    .updateOne(
-      { _id: userId }, 
-      { $set: contactEmail},
-      { upsert: false }
-    );
+    .updateOne({ _id: userId }, { $set: contactEmail }, { upsert: false });
   console.log(response);
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'An error occured in the put request.');
+    res.status(500).json(response.error || 'An error occured in the update email request.');
   }
 };
 
@@ -100,7 +84,9 @@ const putContact = async (req, res) => {
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
-    res.status(500).json(response.error || 'An error occured in the put request.');
+    res
+      .status(500)
+      .json(response.error || 'An error occured in the update contact information request.');
   }
 };
 
@@ -109,24 +95,20 @@ const deleteContact = async (req, res) => {
   // #swagger.summary = 'Delete a contact by ID'
   // #swagger.description = 'To delete a contact enter the ID'
   const userId = new ObjectId(req.params.id);
-  const response = await mongodb
-    .getDb()
-    .db()
-    .collection('contacts')
-    .deleteOne({ _id: userId });
+  const response = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: userId });
   console.log(response);
-    if (response.deletedCount > 0 ) {
-      res.status(200).send();
-    } else {
-      res.status(500).json(response.error || 'An error occured with the delete request.');
-    }
+  if (response.deletedCount > 0) {
+    res.status(200).send();
+  } else {
+    res.status(500).json(response.error || 'An error occured with the delete request.');
+  }
 };
 
-module.exports = { 
+module.exports = {
   getAll,
   getSingle,
   postContact,
   putEmail,
   putContact,
   deleteContact
- };
+};
