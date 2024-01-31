@@ -1,5 +1,6 @@
 // This is going to create a modular web application using node.js express routers
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 // const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
@@ -12,6 +13,7 @@ const port = process.env.PORT || 3000;
 
 app
   .use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+  .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
   .use(bodyParser.json())

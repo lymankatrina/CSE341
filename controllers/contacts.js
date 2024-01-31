@@ -2,6 +2,9 @@ const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async (req, res, next) => {
+  // #swagger.summary = 'Get list of all contacts'
+  // #swagger.description = 'This will list all of the contacts in the database'
+  // #swagger.parameters[]
   const result = await mongodb
     .getDb()
     .db()
@@ -14,6 +17,8 @@ const getAll = async (req, res, next) => {
 };
 
 const getSingle = async (req, res, next) => {
+  // #swagger.summary = 'Get a single contact by ID'
+  // #swagger.description = 'To get a single contact enter a user ID'
   const userId = new ObjectId(req.params.id);
   const result = await mongodb
     .getDb()
@@ -28,6 +33,8 @@ const getSingle = async (req, res, next) => {
 
 // create a contact
 const postContact = async (req, res, next) => {
+  // #swagger.summary = 'Create a new contact'
+  // #swagger.description = 'To create a new contact, enter all of the required information'
   const contact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -49,6 +56,8 @@ const postContact = async (req, res, next) => {
 
 // update one contact email address
 const putEmail = async (req, res) => {
+  // #swagger.summary = 'Update a contacts email address by ID'
+  // #swagger.description = 'To change a contacts email address, enter the user Id and new email address'
   const userId = new ObjectId(req.params.id);
   const contactEmail = {
     email: req.body.email,
@@ -72,6 +81,8 @@ const putEmail = async (req, res) => {
 
 // update one contact using replace contact
 const putContact = async (req, res) => {
+  // #swagger.summary = 'Update all contact information by ID'
+  // #swagger.description = 'To change a contacts information enter the ID and all required information.'
   const userId = new ObjectId(req.params.id);
   const contact = {
     firstName: req.body.firstName,
@@ -95,6 +106,8 @@ const putContact = async (req, res) => {
 
 // Delete a Contact
 const deleteContact = async (req, res) => {
+  // #swagger.summary = 'Delete a contact by ID'
+  // #swagger.description = 'To delete a contact enter the ID'
   const userId = new ObjectId(req.params.id);
   const response = await mongodb
     .getDb()
