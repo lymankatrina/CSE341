@@ -2,7 +2,7 @@
 GET https://katrina341.onrender.com/
 
 ###
-GET https://katrina341.onrender.com/home
+GET https://katrina341.onrender.com/doc
 
 ###
 GET https://katrina341.onrender.com/contacts
