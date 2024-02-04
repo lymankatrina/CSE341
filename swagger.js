@@ -1,4 +1,10 @@
-const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
+const options = {
+  openapi: "3.0.0",
+  autoHeaders: true,
+  autoQuery: true,
+  autoBody: true
+};
+const swaggerAutogen = require('swagger-autogen')(options);
 
 const doc = {
   info: {
@@ -13,16 +19,26 @@ const doc = {
   },
   servers: [
     {
-      url: '',
-      description: ''
+      url: 'http://localhost:3000',
+      description: 'Local Host'
     },
     {
       url: 'https://katrina341.onrender.com',
-      description: ''
+      description: 'Render website'
     }
   ],
   tags: [],
-  components: {}
+  components: {
+    schemas: {
+      contactSchema: {
+        $firstName: 'John',
+        $lastName: 'Doe',
+        $email: 'Johndoe@gmail.com',
+        $favoriteColor: 'Blue',
+        $birthday: '11/22/1998'
+      },
+    }
+  }
 };
 
 const outputFile = './swagger-output.json';

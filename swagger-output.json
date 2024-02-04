@@ -11,12 +11,12 @@
   },
   "servers": [
     {
-      "url": "",
-      "description": ""
+      "url": "http://localhost:3000",
+      "description": "Local Host"
     },
     {
       "url": "https://katrina341.onrender.com",
-      "description": ""
+      "description": "Render website"
     }
   ],
   "paths": {
@@ -31,8 +31,7 @@
         }
       },
       "post": {
-        "summary": "Create a new contact",
-        "description": "To create a new contact, enter all of the required information",
+        "description": "",
         "responses": {
           "201": {
             "description": "Created"
@@ -196,6 +195,42 @@
             }
           }
         }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "contactSchema": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "Johndoe@gmail.com"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "Blue"
+          },
+          "birthday": {
+            "type": "string",
+            "example": "11/22/1998"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "favoriteColor",
+          "birthday"
+        ]
       }
     }
   }

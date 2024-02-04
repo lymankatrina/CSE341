@@ -25,8 +25,6 @@ const getSingle = async (req, res, next) => {
 
 // create a contact
 const postContact = async (req, res, next) => {
-  // #swagger.summary = 'Create a new contact'
-  // #swagger.description = 'To create a new contact, enter all of the required information'
   const contact = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
