@@ -4,7 +4,7 @@ const routes = require('express').Router();
 
 // routes.get('/', names.displayNoName);
 // routes.get('/home', names.displayName);
-routes.get('/doc');
+routes.get('/api-docs');
 routes.use('/contacts', require('./contacts'));
 
 module.exports = routes;

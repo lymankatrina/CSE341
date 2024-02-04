@@ -9,7 +9,7 @@ const swaggerFile = require('./swagger-output.json');
 const port = process.env.PORT || 3000;
 
 app
-  .use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
   .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: true }))

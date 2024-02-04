@@ -2,7 +2,7 @@
 GET http://localhost:3000/
 
 ###
-GET http://localhost:3000/doc
+GET http://localhost:3000/api-docs
 
 ###
 GET http://localhost:3000/contacts

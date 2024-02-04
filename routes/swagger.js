@@ -2,7 +2,7 @@ const routes = require('express').Router();
 const swaggerUi = ('swagger-ui-express');
 const swaggerDocument = require('../swagger-output.json');
 
-routes.use('/doc', swaggerUi.serve);
-routes.get('/doc', swaggerUi.setup(swaggerDocument));
+routes.use('/api-docs', swaggerUi.serve);
+routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 module.exports = routes;
