@@ -19,11 +19,18 @@
       "description": "Render website"
     }
   ],
+  "tags": [
+    "Contacts"
+  ],
   "paths": {
     "/contacts/": {
       "get": {
-        "summary": "Get list of all contacts",
-        "description": "This will list all of the contacts in the database",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get all Contacts",
+        "description": "Get a list of all contacts in the data collection",
+        "operationId": "getAll",
         "responses": {
           "200": {
             "description": "OK"
@@ -31,37 +38,36 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Create a new Contact",
+        "description": "Create a new contact by providing all required information",
+        "operationId": "postContact",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Contact created successfully."
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "An error occured in the create contact request."
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "favoriteColor": {
-                    "example": "any"
-                  },
-                  "birthday": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/Contacts"
+              },
+              "example": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "email": "Johndoe@gmail.com",
+                "favoriteColor": "Blue",
+                "birthday": "04/22/1999"
               }
             }
           }
@@ -70,8 +76,12 @@
     },
     "/contacts/{id}": {
       "get": {
-        "summary": "Get a single contact by ID",
-        "description": "To get a single contact enter a user ID",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get one Contact",
+        "description": "Get the contact information of one contact by contact ID",
+        "operationId": "getSingle",
         "parameters": [
           {
             "name": "id",
@@ -89,8 +99,12 @@
         }
       },
       "put": {
-        "summary": "Update all contact information by ID",
-        "description": "To change a contacts information enter the ID and all required information.",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update Contact Information",
+        "description": "Update the contact information of one contact by contact ID",
+        "operationId": "putContact",
         "parameters": [
           {
             "name": "id",
@@ -103,42 +117,40 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Contact updated successfully."
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "An error occured in the update contact information request."
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "firstName": {
-                    "example": "any"
-                  },
-                  "lastName": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "favoriteColor": {
-                    "example": "any"
-                  },
-                  "birthday": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/Contacts"
+              },
+              "example": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "email": "Johndoe@gmail.com",
+                "favoriteColor": "Blue",
+                "birthday": "04/22/1999"
               }
             }
           }
         }
       },
       "delete": {
-        "summary": "Delete a contact by ID",
-        "description": "To delete a contact enter the ID",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Delete a Contact",
+        "description": "Delete one contact from the data collection by Contact ID.",
+        "operationId": "deleteContact",
         "parameters": [
           {
             "name": "id",
@@ -151,18 +163,22 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Contact deleted successfully."
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "An error occured in the delete request."
           }
         }
       }
     },
     "/contacts/{id}/updateEmail": {
       "put": {
-        "summary": "Update a contacts email address by ID",
-        "description": "To change a contacts email address, enter the user Id and new email address",
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Update Contact Email",
+        "description": "Update the Email address of one contact by contact ID",
+        "operationId": "putEmail",
         "parameters": [
           {
             "name": "id",
@@ -175,10 +191,13 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Email address updated successfully."
+          },
+          "422": {
+            "description": "Unprocessable Entity"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "An error occured in the update email request."
           }
         },
         "requestBody": {
@@ -200,37 +219,128 @@
   },
   "components": {
     "schemas": {
-      "contactSchema": {
+      "Contacts": {
         "type": "object",
         "properties": {
-          "firstName": {
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Doe"
-          },
-          "email": {
-            "type": "string",
-            "example": "Johndoe@gmail.com"
-          },
-          "favoriteColor": {
-            "type": "string",
-            "example": "Blue"
-          },
-          "birthday": {
-            "type": "string",
-            "example": "11/22/1998"
+          "properties": {
+            "type": "object",
+            "properties": {
+              "firstName": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "minLength": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "maxLength": {
+                    "type": "number",
+                    "example": 20
+                  }
+                }
+              },
+              "lastName": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "minLength": {
+                    "type": "number",
+                    "example": 2
+                  },
+                  "maxLength": {
+                    "type": "number",
+                    "example": 20
+                  }
+                }
+              },
+              "email": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              },
+              "favoriteColor": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  },
+                  "minLength": {
+                    "type": "number",
+                    "example": 3
+                  },
+                  "maxLength": {
+                    "type": "number",
+                    "example": 20
+                  }
+                }
+              },
+              "birthday": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "firstName",
+              "lastName",
+              "email",
+              "favoriteColor",
+              "birthday"
+            ]
           }
-        },
-        "required": [
-          "firstName",
-          "lastName",
-          "email",
-          "favoriteColor",
-          "birthday"
-        ]
+        }
+      },
+      "examples": {
+        "type": "object",
+        "properties": {
+          "Contacts": {
+            "type": "object",
+            "properties": {
+              "firstName": {
+                "type": "string",
+                "example": "John"
+              },
+              "lastName": {
+                "type": "string",
+                "example": "Doe"
+              },
+              "email": {
+                "type": "string",
+                "example": "Johndoe@gmail.com"
+              },
+              "favoriteColor": {
+                "type": "string",
+                "example": "Blue"
+              },
+              "birthday": {
+                "type": "string",
+                "example": "04/22/1999"
+              }
+            },
+            "required": [
+              "firstName",
+              "lastName",
+              "email",
+              "favoriteColor",
+              "birthday"
+            ]
+          }
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 const routes = require('express').Router();
-const swaggerUi = ('swagger-ui-express');
+const swaggerUi = 'swagger-ui-express';
 const swaggerDocument = require('../swagger-output.json');
 
 routes.use('/api-docs', swaggerUi.serve);

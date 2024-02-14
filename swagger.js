@@ -1,5 +1,5 @@
 const options = {
-  openapi: "3.0.0",
+  openapi: '3.0.0',
   autoHeaders: true,
   autoQuery: true,
   autoBody: true
@@ -15,7 +15,7 @@ const doc = {
     contact: {
       name: 'KatrinaLyman',
       url: 'https://github.com/lymankatrina/CSE341'
-    },
+    }
   },
   servers: [
     {
@@ -27,16 +27,43 @@ const doc = {
       description: 'Render website'
     }
   ],
-  tags: [],
+  tags: ['Contacts'],
   components: {
     schemas: {
-      contactSchema: {
-        $firstName: 'John',
-        $lastName: 'Doe',
-        $email: 'Johndoe@gmail.com',
-        $favoriteColor: 'Blue',
-        $birthday: '11/22/1998'
+      Contacts: {
+        properties: {
+          $firstName: {
+            type: 'string',
+            minLength: 2,
+            maxLength: 20
+          },
+          $lastName: {
+            type: 'string',
+            minLength: 2,
+            maxLength: 20
+          },
+          $email: {
+            type: 'string'
+          },
+          $favoriteColor: {
+            type: 'string',
+            minLength: 3,
+            maxLength: 20
+          },
+          $birthday: {
+            type: 'string'
+          }
+        }
       },
+      examples: {
+        Contacts: {
+          $firstName: 'John',
+          $lastName: 'Doe',
+          $email: 'Johndoe@gmail.com',
+          $favoriteColor: 'Blue',
+          $birthday: '04/22/1999'
+        }
+      }
     }
   }
 };
